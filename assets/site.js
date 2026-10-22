@@ -12,7 +12,7 @@ const SITE = {
 
   /* ----- Popup (lesson poster) ----- */
   popup: {
-    enabled: true,                        // true = show, false = hide
+    enabled: false,                       // true = show, false = hide
     id: 'mathimata-2026',                 // change this when you change the poster, so people who closed the old one see the new one
     image: 'assets/img/mathimata-2026.png', // the poster image (upload a new file and change this path)
     alt: 'Τα μαθήματα μπριτζ ξεκινούν – Λεωφόρος Δημοκρατίας 73',
