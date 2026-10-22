@@ -29,16 +29,26 @@ Each page is a folder with an `index.html` inside (e.g. `lessons/index.html` is 
 | `/γενικές-πληροφορίες-για-το-μπριτζ/`, `/γιατί-να-μάθετε-μπριτζ/`, `/χρήσιμα/` | the folders with those names |
 | `/home/`, `/directions/` | English pages |
 | `/nea/` | list of all news posts (add a line when you add a post) |
-| `/quiz/` | `quiz/index.html` (page) + `quiz/questions.js` (questions) |
+| `/quiz/` | the quizzes – see below |
 
 The URLs are identical to the old WordPress ones, so existing Google results and bookmarks keep working.
 
 **New page:** copy any folder (e.g. `library/`), rename it, edit its `index.html`, and add it to `menu` in `assets/site.js`.
 **New image / PDF:** put it in `assets/uploads/` and reference it as `../assets/uploads/yourfile.jpg` (one `../` per folder level).
 
-## The quiz (`/quiz/`)
+## The quizzes (`/quiz/`)
 
-A beginner quiz on the basics of bridge. The questions live in **`quiz/questions.js`** – each one is a few lines (question, answers, which answer is correct, explanation), with instructions at the top of the file. Add, remove or reword questions there; the page picks them up automatically. The game logic is in `assets/quiz.js` and the styling at the end of `assets/style.css`.
+One interactive quiz per lesson of the first cycle, based on the lesson summaries:
+
+| URL | Files |
+|---|---|
+| `/quiz/` | `quiz/index.html` – the list of quizzes |
+| `/quiz/mathima-1/` | `quiz/mathima-1/index.html` (page) + `quiz/mathima-1/questions.js` (questions) |
+| `/quiz/mathima-2/` | `quiz/mathima-2/index.html` (page) + `quiz/mathima-2/questions.js` (questions) |
+
+The questions are plain text in `questions.js` – each one is a few lines (question, answers, which answer is correct, explanation), with instructions at the top of the file. Add, remove or reword questions there; the page picks them up automatically. The game logic is in `assets/quiz.js` and the styling at the end of `assets/style.css`.
+
+**New quiz (e.g. lesson 3):** copy the folder `quiz/mathima-2/` to `quiz/mathima-3/`, edit `questions.js` and the texts in `index.html`, then add it to the `menu` in `assets/site.js`, to the list in `quiz/index.html`, and to `sitemap.xml`.
 
 ## Preview on your computer
 

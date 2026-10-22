@@ -31,7 +31,8 @@ const SITE = {
       { label: 'Γενικές πληροφορίες', href: 'γενικές-πληροφορίες-για-το-μπριτζ/' },
       { label: 'Γιατί να μάθετε ΜΠΡΙΤΖ', href: 'γιατί-να-μάθετε-μπριτζ/' },
       { label: 'Χρήσιμα', href: 'χρήσιμα/' },
-      { label: 'Κουίζ για αρχάριους', href: 'quiz/' }
+      { label: 'Κουίζ μαθήματος 1', href: 'quiz/mathima-1/' },
+      { label: 'Κουίζ μαθήματος 2', href: 'quiz/mathima-2/' }
     ]},
     { label: 'Βιβλιοθήκη', href: 'library/' },
     { label: 'Πώς να έρθετε', href: 'directions_gr/' },
