@@ -29,11 +29,16 @@ Each page is a folder with an `index.html` inside (e.g. `lessons/index.html` is 
 | `/γενικές-πληροφορίες-για-το-μπριτζ/`, `/γιατί-να-μάθετε-μπριτζ/`, `/χρήσιμα/` | the folders with those names |
 | `/home/`, `/directions/` | English pages |
 | `/nea/` | list of all news posts (add a line when you add a post) |
+| `/quiz/` | `quiz/index.html` (page) + `quiz/questions.js` (questions) |
 
 The URLs are identical to the old WordPress ones, so existing Google results and bookmarks keep working.
 
 **New page:** copy any folder (e.g. `library/`), rename it, edit its `index.html`, and add it to `menu` in `assets/site.js`.
 **New image / PDF:** put it in `assets/uploads/` and reference it as `../assets/uploads/yourfile.jpg` (one `../` per folder level).
+
+## The quiz (`/quiz/`)
+
+A beginner quiz on the basics of bridge. The questions live in **`quiz/questions.js`** – each one is a few lines (question, answers, which answer is correct, explanation), with instructions at the top of the file. Add, remove or reword questions there; the page picks them up automatically. The game logic is in `assets/quiz.js` and the styling at the end of `assets/style.css`.
 
 ## Preview on your computer
 
