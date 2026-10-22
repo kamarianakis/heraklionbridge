@@ -139,6 +139,20 @@
     return row;
   }
 
+  // ολόκληρο χέρι ανά χρώμα: [['♠', ['K', 'Q', '5']], ['♥', []], ...]  (άδεια λίστα = κανένα φύλλο)
+  function fullHandBox(rows) {
+    var box = el('div', { class: 'fullhand', role: 'group', 'aria-label': 'Τα φύλλα σου ανά χρώμα' });
+    rows.forEach(function (row) {
+      var suit = row[0], ranks = row[1];
+      box.appendChild(el('span', { class: 'fh-suit' + (suit === '♥' || suit === '♦' ? ' red' : ''), 'aria-label': SUIT_PL[suit], text: suit }));
+      var cell = el('span', { class: 'fh-cards' });
+      if (!ranks.length) cell.appendChild(el('span', { class: 'fh-void', text: '— (κανένα φύλλο)' }));
+      ranks.forEach(function (r) { cell.appendChild(card(suit + r)); });
+      box.appendChild(cell);
+    });
+    return box;
+  }
+
   function trumpLabel(t) {
     return t === 'NT' ? 'Χωρίς ατού (ΧΑ)' : 'Ατού: ' + t + ' (' + SUIT_PL[t] + ')';
   }
@@ -148,6 +162,7 @@
     if (q.context) out.push(el('p', { class: 'context', rich: q.context }));
     if (q.auction) out.push(auctionTable(q.auction));
     if (q.hand) out.push(handBox(q.hand));
+    if (q.fullhand) out.push(fullHandBox(q.fullhand));
     if (q.trump) out.push(el('p', { class: 'trump', rich: trumpLabel(q.trump) }));
     if (q.trick) out.push(trickTable(q));
     return out;

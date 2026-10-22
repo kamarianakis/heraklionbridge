@@ -46,10 +46,12 @@ One interactive quiz per lesson of the first cycle, based on the lesson summarie
 | `/quiz/` | `quiz/index.html` – the list of quizzes |
 | `/quiz/mathima-1/` | `quiz/mathima-1/index.html` (page) + `quiz/mathima-1/questions.js` (questions) |
 | `/quiz/mathima-2/` | `quiz/mathima-2/index.html` (page) + `quiz/mathima-2/questions.js` (questions) |
+| `/quiz/mathima-5/` | `quiz/mathima-5/index.html` + `quiz/mathima-5/questions.js` |
+| `/quiz/mathima-6/` | `quiz/mathima-6/index.html` + `quiz/mathima-6/questions.js` |
 
 The questions are plain text in `questions.js` – each one is a few lines (question, answers, which answer is correct, explanation), with instructions at the top of the file. Add, remove or reword questions there; the page picks them up automatically. The game logic is in `assets/quiz.js` and the styling at the end of `assets/style.css`.
 
-**New quiz (e.g. lesson 3):** copy the folder `quiz/mathima-2/` to `quiz/mathima-3/`, edit `questions.js` and the texts in `index.html`, then add it to the `menu` in `assets/site.js`, to the list in `quiz/index.html`, and to `sitemap.xml`.
+**New quiz (e.g. lesson 7):** copy the folder `quiz/mathima-6/` to `quiz/mathima-7/`, edit `questions.js` and the texts in `index.html`, then add it to the `menu` in `assets/site.js`, to the list in `quiz/index.html`, and to `sitemap.xml`.
 
 ## The lecture slides (`/lectures/`)
 

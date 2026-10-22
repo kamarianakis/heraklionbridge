@@ -221,6 +221,12 @@ body.popup-open { overflow: hidden; }
 .hand { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 14px; }
 .hand-label { font-weight: 700; margin-right: 4px; }
 .hand .pcard { min-width: 46px; height: 62px; font-size: 20px; }
+.fullhand { display: grid; grid-template-columns: 34px 1fr; gap: 6px 8px; align-items: center; margin: 0 0 16px; }
+.fh-suit { font-size: 28px; line-height: 1; text-align: center; }
+.fh-suit.red { color: #c62828; }
+.fh-cards { display: flex; flex-wrap: wrap; align-items: center; }
+.fullhand .pcard { min-width: 40px; height: 54px; font-size: 19px; margin-right: 4px; }
+.fh-void { color: #666; font-size: 14px; }
 .auction { border-collapse: collapse; margin: 0 0 16px; width: 100%; max-width: 480px; text-align: center; }
 .auction caption { text-align: left; font-size: 14px; color: #555; padding-bottom: 6px; }
 .auction th, .auction td { border: 1px solid #cfd8dc; padding: 6px 8px; min-width: 60px; }
@@ -274,6 +280,7 @@ body:has(#quiz) .to-top { display: none !important; }
   .quiz-q { font-size: 1.1rem; }
   .qbox { width: 36px; height: 36px; font-size: 14px; }
   .pcard { min-width: 46px; height: 62px; font-size: 20px; }
+  .fullhand .pcard { min-width: 34px; height: 48px; font-size: 16px; margin-right: 3px; }
   .quiz-nav .btn { padding: 12px 14px; font-size: 15px; }
   .auction th { font-size: 12px; padding: 4px; }
   .auction th, .auction td { min-width: 0; }

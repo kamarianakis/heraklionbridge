@@ -33,7 +33,9 @@ const SITE = {
       { label: 'Χρήσιμα', href: 'χρήσιμα/' },
       { label: 'Διαφάνειες μαθημάτων', href: 'lectures/' },
       { label: 'Κουίζ μαθήματος 1', href: 'quiz/mathima-1/' },
-      { label: 'Κουίζ μαθήματος 2', href: 'quiz/mathima-2/' }
+      { label: 'Κουίζ μαθήματος 2', href: 'quiz/mathima-2/' },
+      { label: 'Κουίζ μαθήματος 5', href: 'quiz/mathima-5/' },
+      { label: 'Κουίζ μαθήματος 6', href: 'quiz/mathima-6/' }
     ]},
     { label: 'Βιβλιοθήκη', href: 'library/' },
     { label: 'Πώς να έρθετε', href: 'directions_gr/' },
