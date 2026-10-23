@@ -46,6 +46,7 @@ const SITE = {
   footer: {
     address: ['Λεωφόρος Δημοκρατίας 73'],
     hours: ['Κυριακή: 19.30-23.00', 'Δευτέρα 19:30-23:00', 'Τετάρτη: 19.30-23.00', 'Πέμπτη 19:30-23:00'],
+    hoursEn: ['Sunday: 19:30-23:00', 'Monday: 19:30-23:00', 'Wednesday: 19:30-23:00', 'Thursday: 19:30-23:00'],  // shown on the English pages
     emailUser: 'omi', emailDomain: 'hellasbridge.org',   // written in two parts so spam bots can't read it
     facebook: 'http://fb.com/HeraklionBridgeClub',
     instagram: 'https://www.instagram.com/heraklionbridgeclub/',
@@ -140,6 +141,7 @@ const SITE = {
   /* ----- footer ----- */
   function buildFooter() {
     var f = SITE.footer;
+    var isEnglish = /^(home|directions)\//.test(here);
     var email = f.emailUser + '@' + f.emailDomain;
     var phones = f.phones.map(function (p) {
       return esc(p.name) + '<br><a href="tel:' + esc(p.tel.replace(/\s+/g, '')) + '">' + esc(p.tel) + '</a>';
@@ -148,7 +150,7 @@ const SITE = {
     footer.className = 'site-footer';
     footer.innerHTML =
       '<div class="cols">' +
-        '<div>' + svg('map', 'ico-big') + f.address.map(esc).join('<br>') + '<br><br>' + f.hours.map(esc).join('<br>') + '</div>' +
+        '<div>' + svg('map', 'ico-big') + f.address.map(esc).join('<br>') + '<br><br>' + (isEnglish ? f.hoursEn : f.hours).map(esc).join('<br>') + '</div>' +
         '<div>' + svg('mail', 'ico-big') + '<ul>' +
           '<li>' + svg('mail', 'ico') + '<a href="mailto:' + esc(email) + '">' + esc(email) + '</a></li>' +
           '<li>' + svg('facebook', 'ico') + '<a href="' + esc(f.facebook) + '" rel="noopener">' + esc(f.social) + '</a></li>' +
