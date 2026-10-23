@@ -29,47 +29,15 @@ Each page is a folder with an `index.html` inside (e.g. `lessons/index.html` is 
 | `/γενικές-πληροφορίες-για-το-μπριτζ/`, `/γιατί-να-μάθετε-μπριτζ/`, `/χρήσιμα/` | the folders with those names |
 | `/home/`, `/directions/` | English pages |
 | `/nea/` | list of all news posts (add a line when you add a post) |
-| `/quiz/` | the quizzes – see below |
-| `/lectures/` | lecture slides – see below |
 
 The URLs are identical to the old WordPress ones, so existing Google results and bookmarks keep working.
 
 **New page:** copy any folder (e.g. `library/`), rename it, edit its `index.html`, and add it to `menu` in `assets/site.js`.
 **New image / PDF:** put it in `assets/uploads/` and reference it as `../assets/uploads/yourfile.jpg` (one `../` per folder level).
 
-## The quizzes (`/quiz/`)
+## Learning material (moved)
 
-One interactive quiz per lesson of the first cycle, based on the lesson summaries:
-
-| URL | Files |
-|---|---|
-| `/quiz/` | `quiz/index.html` – the list of quizzes |
-| `/quiz/mathima-1/` | `quiz/mathima-1/index.html` (page) + `quiz/mathima-1/questions.js` (questions) |
-| `/quiz/mathima-2/` | `quiz/mathima-2/index.html` (page) + `quiz/mathima-2/questions.js` (questions) |
-| `/quiz/mathima-5/` | `quiz/mathima-5/index.html` + `quiz/mathima-5/questions.js` |
-| `/quiz/mathima-6/` | `quiz/mathima-6/index.html` + `quiz/mathima-6/questions.js` |
-
-The questions are plain text in `questions.js` – each one is a few lines (question, answers, which answer is correct, explanation), with instructions at the top of the file. Add, remove or reword questions there; the page picks them up automatically. The game logic is in `assets/quiz.js` and the styling at the end of `assets/style.css`.
-
-**New quiz (e.g. lesson 7):** copy the folder `quiz/mathima-6/` to `quiz/mathima-7/`, edit `questions.js` and the texts in `index.html`, then add it to the `menu` in `assets/site.js`, to the list in `quiz/index.html`, and to `sitemap.xml`.
-
-## The lecture slides (`/lectures/`)
-
-Slide decks for students who missed a class, built with [reveal.js](https://revealjs.com) (a copy of version 5.1.0 is stored in `lectures/vendor/reveal/`, so nothing is loaded from other sites).
-
-| URL | Files |
-|---|---|
-| `/lectures/` | `lectures/index.html` – the list of decks |
-| `/lectures/mathima-1/` | `lectures/mathima-1/index.html` – the slides of lesson 1 |
-
-Each slide is a `<section>…</section>` block inside `lectures/mathima-1/index.html`; edit the text there. Useful building blocks (all styled in `lectures/deck.css`):
-- `<div class="example"><p>…</p></div>` – the green-edged "Παράδειγμα" box;
-- `class="fragment"` on any element – it appears with the next click/arrow;
-- playing cards: `<span class="pc">♠K</span>` (add `red` for ♥ ♦, `sm` or `xs` for smaller);
-- a trick diagram, a hand, an auction table: copy an existing slide and change the cards.
-
-**New deck (e.g. lesson 2):** copy `lectures/mathima-1/` to `lectures/mathima-2/`, replace the slides, then add a tile to `lectures/index.html`, and the page to `sitemap.xml`.
-Keyboard shortcuts while viewing: arrows/Space = next/previous, **Esc** = overview of all slides, **F** = full screen, **?** = help. To print or save as PDF, open the deck with `?print-pdf` at the end of the address and print from the browser.
+The lecture slides and quizzes now live in their own repository, [heraklionbridge-learn](https://github.com/kamarianakis/heraklionbridge-learn), published at https://learn.heraklion-bridge.gr. This site only links to it (menu entry *Μάθε Μπριτζ* in `assets/site.js` and a button on the home page). The old files are still in this repository's git history (before the commit "Move quizzes and lectures to the learn site").
 
 ## Preview on your computer
 

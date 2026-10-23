@@ -5,7 +5,7 @@
      • popup  → the lesson poster. Set  enabled: false  to switch it off.
      • menu   → the top navigation (add / remove / rename entries).
      • footer → address, opening hours, e-mail, phone numbers.
-   Paths are written relative to the site root (e.g. 'lessons/').
+   Paths are written relative to the site root (e.g. 'lessons/'); a full address starting with https:// is used as it is.
    ========================================================================== */
 
 const SITE = {
@@ -30,16 +30,12 @@ const SITE = {
     { label: 'Το παιχνίδι', children: [
       { label: 'Γενικές πληροφορίες', href: 'γενικές-πληροφορίες-για-το-μπριτζ/' },
       { label: 'Γιατί να μάθετε ΜΠΡΙΤΖ', href: 'γιατί-να-μάθετε-μπριτζ/' },
-      { label: 'Χρήσιμα', href: 'χρήσιμα/' },
-      { label: 'Διαφάνειες μαθημάτων', href: 'lectures/' },
-      { label: 'Κουίζ μαθήματος 1', href: 'quiz/mathima-1/' },
-      { label: 'Κουίζ μαθήματος 2', href: 'quiz/mathima-2/' },
-      { label: 'Κουίζ μαθήματος 5', href: 'quiz/mathima-5/' },
-      { label: 'Κουίζ μαθήματος 6', href: 'quiz/mathima-6/' }
+      { label: 'Χρήσιμα', href: 'χρήσιμα/' }
     ]},
     { label: 'Βιβλιοθήκη', href: 'library/' },
     { label: 'Πώς να έρθετε', href: 'directions_gr/' },
     { label: 'Μαθήματα', href: 'lessons/' },
+    { label: 'Μάθε Μπριτζ', href: 'https://learn.heraklion-bridge.gr/' },
     { label: 'English', children: [
       { label: 'Home', href: 'home/' },
       { label: 'Directions', href: 'directions/' }
@@ -89,7 +85,7 @@ const SITE = {
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
   }
-  function url(href) { return encodeURI(ROOT + href); }
+  function url(href) { return /^https?:\/\//.test(href) ? href : encodeURI(ROOT + href); }
   function isCurrent(href) { return href === here || (href === '' && here === ''); }
 
   /* ----- header ----- */
