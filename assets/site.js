@@ -5,7 +5,7 @@
      • popup  → the lesson poster. Set  enabled: false  to switch it off.
      • menu   → the top navigation (add / remove / rename entries).
      • footer → address, opening hours, e-mail, phone numbers.
-   Paths are written relative to the site root (e.g. 'lessons/'); a full address starting with https:// is used as it is.
+   Paths are written relative to the site root (e.g. 'lessons/'); a full address starting with https:// is used as it is (add newTab: true to open it in a new tab).
    ========================================================================== */
 
 const SITE = {
@@ -25,7 +25,8 @@ const SITE = {
   menu: [
     { label: 'Αρχική', href: '' },
     { label: 'Όμιλος', children: [
-      { label: 'Το Διοικητικό συμβούλιο του ΟΜΗ', href: 'ds/' }
+      { label: 'Το Διοικητικό συμβούλιο του ΟΜΗ', href: 'ds/' },
+      { label: 'Οι αθλητές μας', href: 'https://hellasbridge.org/bridge/players/club/64', newTab: true }
     ]},
     { label: 'Το παιχνίδι', children: [
       { label: 'Γενικές πληροφορίες', href: 'γενικές-πληροφορίες-για-το-μπριτζ/' },
@@ -47,7 +48,7 @@ const SITE = {
     address: ['Λεωφόρος Δημοκρατίας 73'],
     hours: ['Κυριακή: 19.30-23.00', 'Δευτέρα 19:30-23:00', 'Τετάρτη: 19.30-23.00', 'Πέμπτη 19:30-23:00'],
     hoursEn: ['Sunday: 19:30-23:00', 'Monday: 19:30-23:00', 'Wednesday: 19:30-23:00', 'Thursday: 19:30-23:00'],  // shown on the English pages
-    emailUser: 'omi', emailDomain: 'hellasbridge.org',   // written in two parts so spam bots can't read it
+    emailUser: 'omi', emailDomain: 'hellasbridge.org',   // kept in two parts and only put together after a visitor moves the mouse, touches the screen or presses a key, so e-mail harvesting bots never see the address
     facebook: 'http://fb.com/HeraklionBridgeClub',
     instagram: 'https://www.instagram.com/heraklionbridgeclub/',
     social: 'HeraklionBridgeClub',
@@ -95,7 +96,7 @@ const SITE = {
       if (m.children) {
         var cur = m.children.some(function (c) { return isCurrent(c.href); });
         var subs = m.children.map(function (c) {
-          return '<li' + (isCurrent(c.href) ? ' class="current"' : '') + '><a href="' + esc(url(c.href)) + '">' + esc(c.label) + '</a></li>';
+          return '<li' + (isCurrent(c.href) ? ' class="current"' : '') + '><a href="' + esc(url(c.href)) + '"' + (c.newTab ? ' target="_blank" rel="noopener"' : '') + '>' + esc(c.label) + '</a></li>';
         }).join('');
         return '<li class="has-sub' + (cur ? ' current' : '') + '"><button type="button" class="sub-toggle" aria-expanded="false">' + esc(m.label) + '</button><ul class="sub">' + subs + '</ul></li>';
       }
@@ -142,7 +143,6 @@ const SITE = {
   function buildFooter() {
     var f = SITE.footer;
     var isEnglish = /^(home|directions)\//.test(here);
-    var email = f.emailUser + '@' + f.emailDomain;
     var phones = f.phones.map(function (p) {
       return esc(p.name) + '<br><a href="tel:' + esc(p.tel.replace(/\s+/g, '')) + '">' + esc(p.tel) + '</a>';
     }).join('<br><br>');
@@ -152,7 +152,7 @@ const SITE = {
       '<div class="cols">' +
         '<div>' + svg('map', 'ico-big') + f.address.map(esc).join('<br>') + '<br><br>' + (isEnglish ? f.hoursEn : f.hours).map(esc).join('<br>') + '</div>' +
         '<div>' + svg('mail', 'ico-big') + '<ul>' +
-          '<li>' + svg('mail', 'ico') + '<a href="mailto:' + esc(email) + '">' + esc(email) + '</a></li>' +
+          '<li>' + svg('mail', 'ico') + '<a class="obf-mail" href="#" data-u="' + esc(f.emailUser) + '" data-d="' + esc(f.emailDomain) + '">email</a></li>' +
           '<li>' + svg('facebook', 'ico') + '<a href="' + esc(f.facebook) + '" rel="noopener">' + esc(f.social) + '</a></li>' +
           '<li>' + svg('instagram', 'ico') + '<a href="' + esc(f.instagram) + '" rel="noopener">' + esc(f.social) + '</a></li>' +
         '</ul></div>' +
@@ -250,10 +250,29 @@ const SITE = {
     }, p.delayMs || 0);
   }
 
+  /* ----- e-mail addresses (hidden from harvesting bots) -----
+     Any  <a class="obf-mail" href="#" data-u="name" data-d="example.gr">email</a>
+     becomes a real mailto link with the full address after the first real user action. */
+  function initMail() {
+    var els = document.querySelectorAll('.obf-mail');
+    if (!els.length) return;
+    var events = ['pointermove', 'pointerdown', 'touchstart', 'keydown'];
+    function reveal() {
+      events.forEach(function (ev) { window.removeEventListener(ev, reveal); });
+      els.forEach(function (el) {
+        var addr = el.getAttribute('data-u') + '@' + el.getAttribute('data-d');
+        el.href = 'mailto:' + addr;
+        el.textContent = addr;
+      });
+    }
+    events.forEach(function (ev) { window.addEventListener(ev, reveal, { passive: true }); });
+  }
+
   function init() {
     buildHeader();
     buildFooter();
     buildToTop();
+    initMail();
     initTyping();
     initPopup();
   }

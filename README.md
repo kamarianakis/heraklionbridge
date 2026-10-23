@@ -12,6 +12,7 @@ All in **`assets/site.js`** (the `SITE` block at the very top – read the comme
 | **Show a new poster** | Upload the new image to `assets/img/`, change `popup.image`, and change `popup.id` (so people who closed the old poster see the new one) |
 | Add / remove / rename a menu entry | Edit the `menu` list |
 | Change address, hours, e-mail, phones | Edit the `footer` block |
+| Put an e-mail address in a page | Never type it as plain text. Use `<a class="obf-mail" href="#" data-u="name" data-d="example.gr">email</a>` (name = part before the @, data-d = domain). The address is only assembled after a visitor moves the mouse, touches the screen or presses a key, so harvesting bots do not see it. |
 
 The three big buttons on the home page ("Θέλω να παίξω", "Αποτελέσματα", "Αγωνιστικό Ημερολόγιο") and the orange "Θέλω να μάθω Bridge" button are in **`index.html`** – look for `class="btn …"` and change or delete the `<a …>…</a>` line.
 
